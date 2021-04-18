@@ -133,6 +133,10 @@ class GetStorage {
     return _tryFlush();
   }
 
+  Future<void> reload() async {
+    return _concrete.reload();
+  }
+
   Future<void> _tryFlush() async {
     return microtask.exec(_addToQueue);
   }

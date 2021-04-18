@@ -71,6 +71,12 @@ class StorageImpl {
 
   // }
 
+  Future<void> reload() async {
+    if (await _exists()) {
+      await _readFromStorage();
+    }
+  }
+
   Future<void> _writeToStorage(Map<String, dynamic> data) async {
     localStorage.update(fileName, (val) => json.encode(subject.value),
         ifAbsent: () => json.encode(subject.value));

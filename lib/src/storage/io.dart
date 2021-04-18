@@ -84,6 +84,13 @@ class StorageImpl {
       ..changeValue(key, value);
   }
 
+  Future<void> reload() async {
+    RandomAccessFile _file = await _getRandomFile();
+    if (_file.lengthSync() > 0) {
+      await _readFile();
+    }
+  }
+
   Future<void> _readFile() async {
     try {
       RandomAccessFile _file = await _getRandomFile();
